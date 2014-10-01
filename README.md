@@ -32,3 +32,16 @@ When you add a new feature to a language, extend the implemention in the followi
    3. Semantics
       1. Tests
       2. Implementation
+
+## Bonus
+If you finish (or just want to explore things more), here are some options.
+
+### Better error-checking
+Can you give better error-checking and error messages for the parser? For the read-eval-print loop? You could also write one or more semantic checks: a pass over the AST to check for errors, e.g., divide by literal 0.
+
+### More features
+You could add more features to the language, including
+  - comparisons, e.g., `<`, `>`, `=`, etc.
+  - constants, e.g., built-in names such as `π` or `e`
+  - variables: assignment and use
+  - functions (either with or without recursion)
