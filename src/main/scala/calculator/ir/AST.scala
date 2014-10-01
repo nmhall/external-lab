@@ -7,7 +7,9 @@ package calculator.ir
  * 
  *                   n ∈ 𝒵 
  * 
- *       e ∈ Expr ::= n | e + e
+ *       e ∈ Expr ::= e + t | e - t | t
+ *       t ∈ Term ::= t * f | t / f | f
+ *       f ∈ Fact ::= n | ( e )
  *  
  */
 
