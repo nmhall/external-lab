@@ -13,16 +13,16 @@ class CalcParserTests extends FunSpec with LangParseMatchers[AST] {
   describe("A number") {
 
     it("can be a single digit") {
-      program("1") should parseAs ( Num(1) )
+      program("1") should parseAs ( 1 )
     }
     
     it ("can be multiple digits") {
-      program("10") should parseAs ( Num(10) )
-      program("121") should parseAs ( Num(121) )
+      program("10") should parseAs ( 10 )
+      program("121") should parseAs ( 121 )
     }
     
     it ("can be a negative number") {
-      program("-10") should parseAs ( Num(-10) )
+      program("-10") should parseAs ( -10 )
     }
     
     it ("cannot be floating-point number") {
@@ -35,11 +35,11 @@ class CalcParserTests extends FunSpec with LangParseMatchers[AST] {
   describe("Addition") {
 
     it("can add two numbers") {
-      program("1+1") should parseAs ( Plus(Num(1), Num(1)) )
+      program("1+1") should parseAs ( 1 |+| 1 )
     }
     
     it("can be chained (and is left-associative)") {
-      program("1 + 2 + 100") should parseAs ( Plus(Plus(Num(1), Num(2)), Num(100)) )
+      program("1 + 2 + 100") should parseAs ( (1 |+| 2) |+| 100 )
     }
 
   }
