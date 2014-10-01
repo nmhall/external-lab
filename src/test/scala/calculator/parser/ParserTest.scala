@@ -25,7 +25,7 @@ class NumTests extends FunSpec with LangParseMatchers[AST] {
       program("-10") should parseAs ( Num(-10) )
     }
     
-    it ("can be floating-point number") {
+    it ("cannot be floating-point number") {
       program("1.1") should not (parse)
       program(" .3") should not (parse)
     }
