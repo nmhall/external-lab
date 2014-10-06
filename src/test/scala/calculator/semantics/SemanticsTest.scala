@@ -27,7 +27,7 @@ class NumSemanticsTests extends FunSpec
   describe("Addition") {
 
     it("can add two numbers") {
-      program("1+1") should compute (2)
+      program("1 + 1") should compute (2)
     }
 
     it("can be chained (and is left-associative)") {
@@ -42,11 +42,15 @@ class NumSemanticsTests extends FunSpec
   
   describe("Subtraction") {
     it("can subtract a small number from a big number") {
-      program("3-2") should compute (1)
+      program("3 - 2") should compute (1)
     }
     
     it("can subtract a big number from a small number") {
-      program("2-4") should compute (-2)
+      program("2 - 4") should compute (-2)
+    }
+    
+    it("can be chained (and is left-associative)") {
+      program("4 - 5 - 2") should compute (-3)
     }
     
     it("can handle negative numbers"){

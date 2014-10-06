@@ -54,4 +54,14 @@ class CalcParserTests extends FunSpec with LangParseMatchers[AST] {
     }
     
   }
+  
+  describe("Multiplication") {
+    it("can multiply two numbers") {
+      program("3 * 2") should parseAs (3 |*| 2)
+    }
+    
+    it ("can be chaned (and is left-associative)") {
+      program("3 * 2 * 1") should parseAs ( (3 |*| 2) |*| 1)
+    }
+  }
 }
