@@ -39,5 +39,19 @@ class NumSemanticsTests extends FunSpec
     }
 
   }
+  
+  describe("Subtraction") {
+    it("can subtract a small number from a big number") {
+      program("3-2") should compute (1)
+    }
+    
+    it("can subtract a big number from a small number") {
+      program("2-4") should compute (-2)
+    }
+    
+    it("can handle negative numbers"){
+      program("-1 - -1") should compute (0)
+    }
+  }
 
 }
