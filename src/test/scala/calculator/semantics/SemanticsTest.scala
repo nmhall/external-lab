@@ -72,5 +72,21 @@ class NumSemanticsTests extends FunSpec
       program("-4 * -3") should compute (12)
     }
   }
+  
+  describe("Division") {
+    it("can divide a number by its divisor") {
+      program("6 / 3") should compute (2)
+    }
+    
+    it("truncates for integer division") {
+      program("6 / 4") should compute (1)
+      program("5 / 6") should compute (0)
+    }
+    
+    it("can handle negative numbers") {
+      program("-6 / 3") should compute (-2)
+      program("-6 / -3") should compute (2)
+    }
+  }
 
 }
