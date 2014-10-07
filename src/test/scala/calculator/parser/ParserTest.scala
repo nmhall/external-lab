@@ -60,8 +60,13 @@ class CalcParserTests extends FunSpec with LangParseMatchers[AST] {
       program("3 * 2") should parseAs (3 |*| 2)
     }
     
-    it ("can be chained (and is left-associative)") {
+    it("can be chained (and is left-associative)") {
       program("3 * 2 * 1") should parseAs ( (3 |*| 2) |*| 1)
+    }
+    
+    it("takes precedence over addition") {
+      program("3 * 2 + 1") should parseAs ( (3 |*| 2) |+| 1)
+      program("1 - 3 * 2") should parseAs (1 |-| (3 |*| 2) )
     }
   }
   
@@ -72,6 +77,21 @@ class CalcParserTests extends FunSpec with LangParseMatchers[AST] {
     
     it("can be chained (and is left-associative)") {
       program("8 / 4 / 2") should parseAs ( (8 |/| 4) |/| 2)
+    }
+    
+    it("takes precedence over addition") {
+      program("3 / 2 + 1") should parseAs ( (3 |/| 2) |+| 1)
+      program("1 - 3 / 2") should parseAs (1 |-| (3 |/| 2) )
+    }
+  }
+  
+  describe("Parentheses") {
+    it("contains expressions") {
+      program("(8 + 4)") should parseAs ( Fact(8 |+| 4) )
+    }
+    
+    it ("establishes precedence") {
+      program("(8+4)*2") should parseAs ( (Fact(8 |+| 4) |*| 2) )
     }
   }
 }

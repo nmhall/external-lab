@@ -71,6 +71,11 @@ class NumSemanticsTests extends FunSpec
       program("-4 * 3") should compute (-12)
       program("-4 * -3") should compute (12)
     }
+    
+    it("takes precedence over addition") {
+      program("3 * 2 + 1") should compute (7)
+      program ("1 - 3 * 2") should compute (-5)
+    }
   }
   
   describe("Division") {
@@ -86,6 +91,22 @@ class NumSemanticsTests extends FunSpec
     it("can handle negative numbers") {
       program("-6 / 3") should compute (-2)
       program("-6 / -3") should compute (2)
+    }
+    
+    it("takes precedence over subtraction") {
+      program("2 + 4 / 2") should compute (4)
+      program("2 - 4 / 2") should compute (0)
+    }
+  }
+  
+  describe("Parentheses") {
+    it("establishes precedence") {
+      program("(1 + 2) * 3") should compute (9)
+      program("1 + 2 * 3") should compute (7)
+    }
+    
+    it("should be nestable") {
+      program("(2 * (1 + 3)) * (1 - (2 - 3))") should compute (16)
     }
   }
 
